@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: superbrothers/close-pull-request@v3
         with:
-          comment: "We do not accept Pull Requests on GitHub! Please, open a PR in [GitLab](https://gitlab.com/aplus-framework/projects/sample-package)."
+          comment: "We do not accept Pull Requests on GitHub! Please, open a PR in [GitLab](https://gitlab.com/aplus-framework/libraries/testing)."
