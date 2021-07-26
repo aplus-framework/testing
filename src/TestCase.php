@@ -61,7 +61,9 @@ abstract class TestCase extends PHPUnitTestCase
         $_SERVER['REQUEST_METHOD'] = \strtoupper($method);
         $_SERVER['REQUEST_SCHEME'] = $url->getScheme();
         $_SERVER['HTTP_HOST'] = $url->getHost();
-        $_SERVER['REQUEST_URI'] = $url->getPath();
+        $query = $url->getQuery();
+        $query = $query === null ? '' : '?' . $query;
+        $_SERVER['REQUEST_URI'] = $url->getPath() . $query;
         foreach ($headers as $name => $value) {
             $name = \strtoupper($name);
             $name = \strtr($name, ['-' => '_']);
