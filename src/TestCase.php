@@ -89,4 +89,29 @@ abstract class TestCase extends PHPUnitTestCase
         }
         return $this;
     }
+
+    public static function assertResponseStatus(string $status) : void
+    {
+        self::assertSame($status, App::response()->getStatus());
+    }
+
+    public static function assertResponseStatusCode(int $code) : void
+    {
+        self::assertSame($code, App::response()->getStatusCode());
+    }
+
+    public static function assertResponseStatusReason(string $reason) : void
+    {
+        self::assertSame($reason, App::response()->getStatusReason());
+    }
+
+    public static function assertResponseBodyContains(string $string) : void
+    {
+        self::assertStringContainsString($string, App::response()->getBody());
+    }
+
+    public static function assertMatchedRouteName(string $name) : void
+    {
+        self::assertSame($name, App::router()->getMatchedRoute()->getName());
+    }
 }
