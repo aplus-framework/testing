@@ -25,7 +25,7 @@ final class TestCaseTest extends PHPUnitTestCase
         $this->testCase = new TestCaseMock();
     }
 
-    public function testPrepareRequest() : void
+    public function testRunHttp() : void
     {
         self::assertFalse(isset($_SERVER['SERVER_PROTOCOL']));
         self::assertFalse(isset($_SERVER['REQUEST_METHOD']));
@@ -35,7 +35,7 @@ final class TestCaseTest extends PHPUnitTestCase
         self::assertSame([], $_COOKIE);
         self::assertSame([], $_GET);
         self::assertSame([], $_POST);
-        $this->testCase->prepareRequest(
+        $this->testCase->app()->runHttp(
             'http://domain.tld:8080/users?page=10',
             'GET',
             [
@@ -56,9 +56,9 @@ final class TestCaseTest extends PHPUnitTestCase
         self::assertSame([], $_POST);
     }
 
-    public function testPrepareRequestWithPost() : void
+    public function testRunHttpWithPost() : void
     {
-        $this->testCase->prepareRequest(
+        $this->testCase->app()->runHttp(
             'https://domain.tld/contact',
             'POST',
             [
