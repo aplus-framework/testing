@@ -9,6 +9,7 @@
  */
 namespace Framework\Testing;
 
+use Closure;
 use Framework\Config\Config;
 use Framework\HTTP\URL;
 use Framework\MVC\App;
@@ -31,12 +32,18 @@ class AppTesting
     }
 
     /**
-     * Run the App without phpunit terminal output.
+     * Run App in a Closure suppressing the output buffer.
+     *
+     * It avoids buffer to be output in the PHPUnit terminal.
+     *
+     * @param Closure $closure
      */
-    protected function run() : void
+    protected function suppressOutputBuffer(Closure $closure) : void
     {
-        \ob_start();
-        $this->app->run();
+        \ob_start(static function () {
+            return '';
+        });
+        $closure($this->app);
         \ob_end_clean();
     }
 
@@ -54,7 +61,9 @@ class AppTesting
     public function runCli(string $line, array $env = []) : void
     {
         App::setIsCli(true);
-        $this->run();
+        $this->suppressOutputBuffer(static function (App $app) : void {
+            $app->runCli();
+        });
     }
 
     /**
@@ -107,6 +116,8 @@ class AppTesting
         ) {
             \parse_str($body, $_POST);
         }
-        $this->run();
+        $this->suppressOutputBuffer(static function (App $app) : void {
+            $app->runHttp();
+        });
     }
 }
