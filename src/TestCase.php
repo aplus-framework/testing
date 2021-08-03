@@ -19,10 +19,17 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 abstract class TestCase extends PHPUnitTestCase
 {
     protected string $configDir;
+    protected Config $config;
+    protected AppTesting $app;
 
-    protected function app(Config $config = null) : AppTesting
+    protected function setUp() : void
     {
-        return new AppTesting($config ?? new Config($this->configDir));
+        $this->prepareDefaults();
+    }
+
+    protected function prepareDefaults() : void
+    {
+        $this->app = new AppTesting($this->config ?? new Config($this->configDir));
     }
 
     public static function assertResponseStatus(string $status) : void

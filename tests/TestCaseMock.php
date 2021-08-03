@@ -9,16 +9,17 @@
  */
 namespace Tests\Testing;
 
-use Framework\Config\Config;
 use Framework\Testing\AppTesting;
 use Framework\Testing\TestCase;
 
 class TestCaseMock extends TestCase
 {
     protected string $configDir = __DIR__ . '/config';
+    public AppTesting $app;
 
-    public function app(Config $config = null) : AppTesting
+    public function __construct(mixed ...$arguments)
     {
-        return parent::app($config);
+        parent::__construct(...$arguments);
+        $this->prepareDefaults();
     }
 }

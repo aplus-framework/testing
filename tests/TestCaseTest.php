@@ -35,7 +35,7 @@ final class TestCaseTest extends PHPUnitTestCase
         self::assertSame([], $_COOKIE);
         self::assertSame([], $_GET);
         self::assertSame([], $_POST);
-        $this->testCase->app()->runHttp(
+        $this->testCase->app->runHttp(
             'http://domain.tld:8080/users?page=10',
             'GET',
             [
@@ -58,7 +58,7 @@ final class TestCaseTest extends PHPUnitTestCase
 
     public function testRunHttpWithPost() : void
     {
-        $this->testCase->app()->runHttp(
+        $this->testCase->app->runHttp(
             'https://domain.tld/contact',
             'POST',
             [
