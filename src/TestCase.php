@@ -53,7 +53,7 @@ abstract class TestCase extends PHPUnitTestCase
         self::assertStringContainsString($string, App::response()->getBody());
     }
 
-    public static function assertMatchedRouteName(string $name) : void
+    public static function assertMatchedRouteName(?string $name) : void
     {
         self::assertSame($name, App::router()->getMatchedRoute()->getName());
     }
