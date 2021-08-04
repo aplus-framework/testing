@@ -32,10 +32,7 @@ class AppTesting
         $this->app = new class($config) extends App {
             public function runCliWithExec(string $command) : void
             {
-                $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
-                $_SERVER['REQUEST_METHOD'] = 'GET';
-                $_SERVER['HTTP_HOST'] = 'localhost';
-                $_SERVER['REQUEST_URI'] = '/';
+                $this->setRequiredCliVars();
                 $this->prepareToRun();
                 static::console()->exec($command);
             }
