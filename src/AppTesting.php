@@ -10,6 +10,7 @@
 namespace Framework\Testing;
 
 use Closure;
+use Framework\CLI\Stream;
 use Framework\Config\Config;
 use Framework\HTTP\URL;
 use Framework\MVC\App;
@@ -68,6 +69,7 @@ class AppTesting
     public function runCli(string $command, array $env = []) : void
     {
         App::setIsCli(true);
+        Stream::init();
         $this->suppressOutputBuffer(static function (App $app) use ($command) : void {
             if ($command === '') {
                 $command = 'index';
