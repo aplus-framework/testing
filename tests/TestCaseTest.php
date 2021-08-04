@@ -9,6 +9,7 @@
  */
 namespace Tests\Testing;
 
+use Framework\CLI\Stream;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 /**
@@ -81,5 +82,19 @@ final class TestCaseTest extends PHPUnitTestCase
                 'y',
             ],
         ], $_POST);
+    }
+
+    public function testRunCli() : void
+    {
+        Stream::init();
+        $this->testCase->app->runCli('');
+        self::assertStringContainsString('Commands', Stream::getOutput());
+    }
+
+    public function testRunCliWithCommand() : void
+    {
+        Stream::init();
+        $this->testCase->app->runCli('about');
+        self::assertStringContainsString('OSS', Stream::getOutput());
     }
 }

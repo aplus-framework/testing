@@ -28,7 +28,17 @@ class AppTesting
      */
     public function __construct(Config $config)
     {
-        $this->app = new App($config);
+        $this->app = new class($config) extends App {
+            public function runCliWithExec(string $command) : void
+            {
+                $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
+                $_SERVER['REQUEST_METHOD'] = 'GET';
+                $_SERVER['HTTP_HOST'] = 'localhost';
+                $_SERVER['REQUEST_URI'] = '/';
+                $this->prepareToRun();
+                static::console()->exec($command);
+            }
+        };
     }
 
     /**
@@ -50,19 +60,19 @@ class AppTesting
     /**
      * Simulate a CLI request for tests.
      *
-     * @todo Execute Console
-     * @codeCoverageIgnore
-     *
+     * @param string $command Command line
      * @param array<string,string> $env Environment variables
-     * @param string $line Command line
      *
      * @return void
      */
-    public function runCli(string $line, array $env = []) : void
+    public function runCli(string $command, array $env = []) : void
     {
         App::setIsCli(true);
-        $this->suppressOutputBuffer(static function (App $app) : void {
-            $app->runCli();
+        $this->suppressOutputBuffer(static function (App $app) use ($command) : void {
+            if ($command === '') {
+                $command = 'index';
+            }
+            $app->runCliWithExec($command); // @phpstan-ignore-line
         });
     }
 
