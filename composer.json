@@ -10,7 +10,7 @@
         "testcase",
         "mvc"
     ],
-    "homepage": "https://aplus-framework.com/docs/testing",
+    "homepage": "https://docs.aplus-framework.com/guides/libraries/testing/",
     "license": "MIT",
     "authors": [
         {
@@ -53,6 +53,6 @@
         "issues": "https://gitlab.com/aplus-framework/libraries/testing/issues",
         "wiki": "https://gitlab.com/aplus-framework/libraries/testing/wikis/home",
         "source": "https://gitlab.com/aplus-framework/libraries/testing",
-        "docs": "https://aplus-framework.gitlab.io/libraries/testing/docs/"
+        "docs": "https://docs.aplus-framework.com/guides/libraries/testing/"
     }
 }

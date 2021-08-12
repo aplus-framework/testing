@@ -1,7 +1,6 @@
 # Aplus Framework Testing Library
 
-- [Homepage](https://aplus-framework.com/docs/testing)
-- [API Documentation](https://aplus-framework.gitlab.io/libraries/testing/docs/)
+- [Documentation](https://docs.aplus-framework.com/guides/libraries/testing/)
 
 [![Pipeline](https://gitlab.com/aplus-framework/libraries/testing/badges/master/pipeline.svg)](https://gitlab.com/aplus-framework/libraries/testing/-/pipelines?scope=branches)
 [![Coverage](https://gitlab.com/aplus-framework/libraries/testing/badges/master/coverage.svg?job=test:php)](https://aplus-framework.gitlab.io/libraries/testing/coverage/)
