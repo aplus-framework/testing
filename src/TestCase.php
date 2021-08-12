@@ -16,6 +16,8 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 /**
  * Class TestCase.
+ *
+ * @package testing
  */
 abstract class TestCase extends PHPUnitTestCase
 {

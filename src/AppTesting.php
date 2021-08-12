@@ -17,6 +17,8 @@ use Framework\MVC\App;
 
 /**
  * Class AppTesting.
+ *
+ * @package testing
  */
 class AppTesting
 {
