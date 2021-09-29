@@ -9,7 +9,7 @@
  */
 namespace Framework\Testing;
 
-use Framework\CLI\Stream;
+use Framework\CLI\Streams\Stdout;
 use Framework\Config\Config;
 use Framework\MVC\App;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
@@ -62,6 +62,6 @@ abstract class TestCase extends PHPUnitTestCase
 
     public static function assertStdoutContains(string $string) : void
     {
-        self::assertStringContainsString($string, Stream::getOutput());
+        self::assertStringContainsString($string, Stdout::getContents());
     }
 }
