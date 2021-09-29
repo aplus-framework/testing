@@ -10,6 +10,7 @@
 namespace Framework\Testing;
 
 use Closure;
+use Framework\CLI\Streams\Stderr;
 use Framework\CLI\Streams\Stdout;
 use Framework\Config\Config;
 use Framework\HTTP\URL;
@@ -68,6 +69,7 @@ class AppTesting
     public function runCli(string $command, array $env = []) : void
     {
         App::setIsCli(true);
+        Stderr::init();
         Stdout::init();
         $this->suppressOutputBuffer(static function (App $app) use ($command) : void {
             if ($command === '') {

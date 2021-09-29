@@ -33,4 +33,11 @@ class RealTestCaseTest extends TestCase
         $this->app->runCli('help about');
         self::assertStdoutContains('command-line interface');
     }
+
+    public function testStderrContains() : void
+    {
+        $this->app->runCli('index');
+        \fwrite(\STDERR, 'Foobar');
+        self::assertStderrContains('Foobar');
+    }
 }

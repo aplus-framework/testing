@@ -9,6 +9,7 @@
  */
 namespace Framework\Testing;
 
+use Framework\CLI\Streams\Stderr;
 use Framework\CLI\Streams\Stdout;
 use Framework\Config\Config;
 use Framework\MVC\App;
@@ -58,6 +59,11 @@ abstract class TestCase extends PHPUnitTestCase
     public static function assertMatchedRouteName(?string $name) : void
     {
         self::assertSame($name, App::router()->getMatchedRoute()->getName());
+    }
+
+    public static function assertStderrContains(string $string) : void
+    {
+        self::assertStringContainsString($string, Stderr::getContents());
     }
 
     public static function assertStdoutContains(string $string) : void
