@@ -16,7 +16,7 @@ use Framework\Testing\TestCase;
  */
 class RealTestCaseTest extends TestCase
 {
-    protected string $configDir = __DIR__ . '/config';
+    protected array | string $configs = __DIR__ . '/config';
 
     public function testHttp() : void
     {

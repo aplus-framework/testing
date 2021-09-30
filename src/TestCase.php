@@ -22,7 +22,10 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
  */
 abstract class TestCase extends PHPUnitTestCase
 {
-    protected string $configDir;
+    /**
+     * @var array<string,mixed>|string
+     */
+    protected array | string $configs;
     protected Config $config;
     protected AppTesting $app;
 
@@ -33,7 +36,7 @@ abstract class TestCase extends PHPUnitTestCase
 
     protected function prepareDefaults() : void
     {
-        $this->app = new AppTesting($this->config ?? new Config($this->configDir));
+        $this->app = new AppTesting($this->config ?? new Config($this->configs));
     }
 
     public static function assertResponseStatus(string $status) : void

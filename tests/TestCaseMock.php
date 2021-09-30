@@ -14,7 +14,7 @@ use Framework\Testing\TestCase;
 
 class TestCaseMock extends TestCase
 {
-    protected string $configDir = __DIR__ . '/config';
+    protected array | string $configs = __DIR__ . '/config';
     public AppTesting $app;
 
     public function __construct(mixed ...$arguments)
