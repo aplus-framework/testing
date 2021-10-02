@@ -25,6 +25,8 @@ class RealTestCaseTest extends TestCase
         self::assertResponseStatusCode(404);
         self::assertResponseStatusReason('Not Found');
         self::assertResponseBodyContains('Error 404');
+        self::assertResponseContainsHeader('content-type');
+        self::assertResponseHeader('content-type', 'text/html; charset=UTF-8');
         self::assertMatchedRouteName('not-found');
     }
 
