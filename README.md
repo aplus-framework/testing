@@ -1,3 +1,5 @@
+<a href="https://gitlab.com/aplus-framework/libraries/testing"><img src="https://gitlab.com/aplus-framework/libraries/testing/-/raw/master/guide/image.png" alt="Aplus Framework Testing Library" align="right" width="100"></a>
+
 # Aplus Framework Testing Library
 
 - [User Guide](https://docs.aplus-framework.com/guides/libraries/testing/index.html)
