@@ -23,9 +23,9 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 abstract class TestCase extends PHPUnitTestCase
 {
     /**
-     * @var array<string,mixed>|string
+     * @var array<string,mixed>|string|null
      */
-    protected array | string $configs;
+    protected array | string | null $configs = null;
     protected Config $config;
     protected AppTesting $app;
 
