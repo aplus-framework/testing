@@ -2,6 +2,7 @@
 
 # Aplus Framework Testing Library
 
+- [Homepage](https://aplus-framework.com/packages/testing)
 - [User Guide](https://docs.aplus-framework.com/guides/libraries/testing/index.html)
 - [API Documentation](https://docs.aplus-framework.com/packages/testing.html)
 
