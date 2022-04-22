@@ -35,7 +35,6 @@ class AppTesting
         $this->app = new class($config) extends App {
             public function runCliWithExec(string $command) : void
             {
-                $this->setRequiredCliVars();
                 $this->prepareToRun();
                 static::console()->exec($command);
             }
