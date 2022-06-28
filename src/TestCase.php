@@ -41,46 +41,81 @@ abstract class TestCase extends PHPUnitTestCase
 
     public static function assertResponseStatus(string $status) : void
     {
-        self::assertSame($status, App::response()->getStatus());
+        self::assertSame(
+            $status,
+            App::response()->getStatus(),
+            'Assert Response Status:'
+        );
     }
 
     public static function assertResponseStatusCode(int $code) : void
     {
-        self::assertSame($code, App::response()->getStatusCode());
+        self::assertSame(
+            $code,
+            App::response()->getStatusCode(),
+            'Assert Response Status Code:'
+        );
     }
 
     public static function assertResponseStatusReason(string $reason) : void
     {
-        self::assertSame($reason, App::response()->getStatusReason());
+        self::assertSame(
+            $reason,
+            App::response()->getStatusReason(),
+            'Assert Response Status Reason:'
+        );
     }
 
     public static function assertResponseBodyContains(string $string) : void
     {
-        self::assertStringContainsString($string, App::response()->getBody());
+        self::assertStringContainsString(
+            $string,
+            App::response()->getBody(),
+            'Assert Response Body Contains:'
+        );
     }
 
     public static function assertResponseHeader(string $name, string $value) : void
     {
-        self::assertSame($value, App::response()->getHeader($name));
+        self::assertSame(
+            $value,
+            App::response()->getHeader($name),
+            'Assert Response Header:'
+        );
     }
 
     public static function assertResponseContainsHeader(string $name) : void
     {
-        self::assertNotNull(App::response()->getHeader($name));
+        self::assertNotNull(
+            App::response()->getHeader($name),
+            'Assert Response Contains Header:'
+        );
     }
 
     public static function assertMatchedRouteName(?string $name) : void
     {
-        self::assertSame($name, App::router()->getMatchedRoute()->getName());
+        self::assertSame(
+            $name,
+            App::router()->getMatchedRoute()?->getName(),
+            'Assert Matched Route Name:'
+        );
     }
 
     public static function assertStderrContains(string $string) : void
     {
-        self::assertStringContainsString($string, Stderr::getContents());
+        self::assertStringContainsString(
+            $string,
+            Stderr::getContents(),
+            'Assert STDERR Contains:'
+        );
     }
 
     public static function assertStdoutContains(string $string) : void
     {
-        self::assertStringContainsString($string, Stdout::getContents());
+        self::assertStringContainsString(
+            $string,
+            Stdout::getContents(),
+            'Assert STDOUT Contains:'
+        );
     }
 }
