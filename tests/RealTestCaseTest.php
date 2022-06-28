@@ -14,7 +14,7 @@ use Framework\Testing\TestCase;
 /**
  * @runTestsInSeparateProcesses
  */
-class RealTestCaseTest extends TestCase
+final class RealTestCaseTest extends TestCase
 {
     protected array | string | null $configs = __DIR__ . '/config';
 
