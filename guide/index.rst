@@ -1,6 +1,9 @@
 Testing
 =======
 
+.. image:: image.png
+    :alt: Aplus Framework Testing Library
+
 Aplus Framework Testing Library.
 
 - `Installation`_
