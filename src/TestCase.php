@@ -13,6 +13,15 @@ use Framework\CLI\Streams\Stderr;
 use Framework\CLI\Streams\Stdout;
 use Framework\Config\Config;
 use Framework\MVC\App;
+use Framework\Testing\Constraints\MatchedRouteName;
+use Framework\Testing\Constraints\ResponseBodyContains;
+use Framework\Testing\Constraints\ResponseContainsHeader;
+use Framework\Testing\Constraints\ResponseHeader;
+use Framework\Testing\Constraints\ResponseStatus;
+use Framework\Testing\Constraints\ResponseStatusCode;
+use Framework\Testing\Constraints\ResponseStatusReason;
+use Framework\Testing\Constraints\StderrContains;
+use Framework\Testing\Constraints\StdoutContains;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 /**
@@ -39,83 +48,84 @@ abstract class TestCase extends PHPUnitTestCase
         $this->app = new AppTesting($this->config ?? new Config($this->configs));
     }
 
-    public static function assertResponseStatus(string $status) : void
+    public static function assertResponseStatus(string $status, string $message = '') : void
     {
-        self::assertSame(
+        self::assertThat(
             $status,
-            App::response()->getStatus(),
-            'Assert Response Status:'
+            new ResponseStatus(App::response()->getStatus()),
+            $message
         );
     }
 
-    public static function assertResponseStatusCode(int $code) : void
+    public static function assertResponseStatusCode(int $code, string $message = '') : void
     {
-        self::assertSame(
+        self::assertThat(
             $code,
-            App::response()->getStatusCode(),
-            'Assert Response Status Code:'
+            new ResponseStatusCode(App::response()->getStatusCode()),
+            $message
         );
     }
 
-    public static function assertResponseStatusReason(string $reason) : void
+    public static function assertResponseStatusReason(string $reason, string $message = '') : void
     {
-        self::assertSame(
+        self::assertThat(
             $reason,
-            App::response()->getStatusReason(),
-            'Assert Response Status Reason:'
+            new ResponseStatusReason(App::response()->getStatusReason()),
+            $message
         );
     }
 
-    public static function assertResponseBodyContains(string $string) : void
+    public static function assertResponseBodyContains(string $string, string $message = '') : void
     {
-        self::assertStringContainsString(
-            $string,
+        self::assertThat(
             App::response()->getBody(),
-            'Assert Response Body Contains:'
+            new ResponseBodyContains($string),
+            $message
         );
     }
 
-    public static function assertResponseHeader(string $name, string $value) : void
+    public static function assertResponseHeader(string $name, string $value, string $message = '') : void
     {
-        self::assertSame(
+        self::assertThat(
             $value,
-            App::response()->getHeader($name),
-            'Assert Response Header:'
+            new ResponseHeader(App::response()->getHeader($name), $name),
+            $message
         );
     }
 
-    public static function assertResponseContainsHeader(string $name) : void
+    public static function assertResponseContainsHeader(string $name, string $message = '') : void
     {
-        self::assertNotNull(
+        self::assertThat(
             App::response()->getHeader($name),
-            'Assert Response Contains Header:'
+            new ResponseContainsHeader($name),
+            $message
         );
     }
 
-    public static function assertMatchedRouteName(?string $name) : void
+    public static function assertMatchedRouteName(?string $name, string $message = '') : void
     {
-        self::assertSame(
+        self::assertThat(
             $name,
-            App::router()->getMatchedRoute()?->getName(),
-            'Assert Matched Route Name:'
+            new MatchedRouteName(App::router()->getMatchedRoute()?->getName()),
+            $message
         );
     }
 
-    public static function assertStderrContains(string $string) : void
+    public static function assertStderrContains(string $string, string $message = '') : void
     {
-        self::assertStringContainsString(
-            $string,
+        self::assertThat(
             Stderr::getContents(),
-            'Assert STDERR Contains:'
+            new StderrContains($string),
+            $message
         );
     }
 
-    public static function assertStdoutContains(string $string) : void
+    public static function assertStdoutContains(string $string, string $message = '') : void
     {
-        self::assertStringContainsString(
-            $string,
+        self::assertThat(
             Stdout::getContents(),
-            'Assert STDOUT Contains:'
+            new StdoutContains($string),
+            $message
         );
     }
 }
