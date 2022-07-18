@@ -18,7 +18,7 @@ use SebastianBergmann\Comparator\ComparisonFailure;
  *
  * @package testing
  */
-class StderrContains extends Constraint
+final class StderrContains extends Constraint
 {
     private string $string;
 

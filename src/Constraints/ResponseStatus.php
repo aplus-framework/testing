@@ -16,7 +16,7 @@ use PHPUnit\Framework\Constraint\Constraint;
  *
  * @package testing
  */
-class ResponseStatus extends Constraint
+final class ResponseStatus extends Constraint
 {
     use EvaluateTrait;
 

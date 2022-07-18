@@ -16,7 +16,7 @@ use PHPUnit\Framework\Constraint\Constraint;
  *
  * @package testing
  */
-class MatchedRouteName extends Constraint
+final class MatchedRouteName extends Constraint
 {
     use EvaluateTrait;
 

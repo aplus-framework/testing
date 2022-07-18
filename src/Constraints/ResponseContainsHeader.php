@@ -18,7 +18,7 @@ use SebastianBergmann\Comparator\ComparisonFailure;
  *
  * @package testing
  */
-class ResponseContainsHeader extends Constraint
+final class ResponseContainsHeader extends Constraint
 {
     private string $string;
 
