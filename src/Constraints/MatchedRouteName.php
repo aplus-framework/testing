@@ -29,6 +29,7 @@ final class MatchedRouteName extends Constraint
 
     public function toString() : string
     {
-        return 'is the Matched Route Name';
+        $value = $this->value === null ? '(null)' : "'{$this->value}'";
+        return "is equals the Matched Route Name {$value}";
     }
 }

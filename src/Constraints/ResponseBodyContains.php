@@ -45,7 +45,7 @@ final class ResponseBodyContains extends Constraint
     public function toString() : string
     {
         return \sprintf(
-            'contains "%s".',
+            "contains '%s'.",
             $this->string
         );
     }

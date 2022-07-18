@@ -46,7 +46,7 @@ final class ResponseContainsHeader extends Constraint
     public function toString() : string
     {
         return \sprintf(
-            'contains header "%s".',
+            "contains header '%s'.",
             $this->string
         );
     }

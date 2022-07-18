@@ -29,6 +29,6 @@ final class ResponseStatusCode extends Constraint
 
     public function toString() : string
     {
-        return 'is the Response Status Code';
+        return "is equals the Response Status Code {$this->value}";
     }
 }

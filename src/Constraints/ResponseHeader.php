@@ -31,6 +31,6 @@ final class ResponseHeader extends Constraint
 
     public function toString() : string
     {
-        return 'is equals the Response Header "' . $this->name . '"';
+        return "is equals the value of the Response Header '{$this->name}'";
     }
 }
