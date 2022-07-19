@@ -30,7 +30,7 @@ final class ResponseContainsHeader extends Constraint
     protected function fail($other, $description, ComparisonFailure $comparisonFailure = null) : void
     {
         $failureDescription = \sprintf(
-            'Failed asserting that the Response %s',
+            'Failed asserting that Response %s',
             $this->failureDescription($other)
         );
         $failureDescription = \strtr($failureDescription, [' null' => '']);

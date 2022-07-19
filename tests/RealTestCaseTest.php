@@ -128,7 +128,7 @@ final class RealTestCaseTest extends TestCase
             self::assertResponseContainsHeader('content-type');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that the Response contains header 'content-type'.",
+                "Failed asserting that Response contains header 'content-type'.",
                 $exception->getMessage()
             );
         }
@@ -140,7 +140,7 @@ final class RealTestCaseTest extends TestCase
             self::assertResponseContainsHeader('content-type', 'ABC');
         } catch (Exception $exception) {
             self::assertSame(
-                "ABC\nFailed asserting that the Response contains header 'content-type'.",
+                "ABC\nFailed asserting that Response contains header 'content-type'.",
                 $exception->getMessage()
             );
         }
