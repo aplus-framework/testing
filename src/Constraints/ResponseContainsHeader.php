@@ -33,7 +33,6 @@ final class ResponseContainsHeader extends Constraint
             'Failed asserting that Response %s',
             $this->failureDescription($other)
         );
-        $failureDescription = \strtr($failureDescription, [' null' => '']);
         if ( ! empty($description)) {
             $failureDescription = $description . "\n" . $failureDescription;
         }
@@ -41,6 +40,11 @@ final class ResponseContainsHeader extends Constraint
             $failureDescription,
             $comparisonFailure
         );
+    }
+
+    protected function failureDescription($other) : string
+    {
+        return $this->toString();
     }
 
     public function toString() : string
