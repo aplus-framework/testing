@@ -15,13 +15,17 @@ use Framework\Config\Config;
 use Framework\MVC\App;
 use Framework\Testing\Constraints\MatchedRouteName;
 use Framework\Testing\Constraints\ResponseBodyContains;
+use Framework\Testing\Constraints\ResponseBodyNotContains;
 use Framework\Testing\Constraints\ResponseContainsHeader;
 use Framework\Testing\Constraints\ResponseHeader;
+use Framework\Testing\Constraints\ResponseNotContainsHeader;
 use Framework\Testing\Constraints\ResponseStatus;
 use Framework\Testing\Constraints\ResponseStatusCode;
 use Framework\Testing\Constraints\ResponseStatusReason;
 use Framework\Testing\Constraints\StderrContains;
+use Framework\Testing\Constraints\StderrNotContains;
 use Framework\Testing\Constraints\StdoutContains;
+use Framework\Testing\Constraints\StdoutNotContains;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 /**
@@ -84,6 +88,15 @@ abstract class TestCase extends PHPUnitTestCase
         );
     }
 
+    public static function assertResponseBodyNotContains(string $string, string $message = '') : void
+    {
+        self::assertThat(
+            App::response()->getBody(),
+            new ResponseBodyNotContains($string),
+            $message
+        );
+    }
+
     public static function assertResponseHeader(string $name, string $value, string $message = '') : void
     {
         self::assertThat(
@@ -98,6 +111,15 @@ abstract class TestCase extends PHPUnitTestCase
         self::assertThat(
             App::response()->getHeader($name),
             new ResponseContainsHeader($name),
+            $message
+        );
+    }
+
+    public static function assertResponseNotContainsHeader(string $name, string $message = '') : void
+    {
+        self::assertThat(
+            App::response()->getHeader($name),
+            new ResponseNotContainsHeader($name),
             $message
         );
     }
@@ -120,11 +142,29 @@ abstract class TestCase extends PHPUnitTestCase
         );
     }
 
+    public static function assertStderrNotContains(string $string, string $message = '') : void
+    {
+        self::assertThat(
+            Stderr::getContents(),
+            new StderrNotContains($string),
+            $message
+        );
+    }
+
     public static function assertStdoutContains(string $string, string $message = '') : void
     {
         self::assertThat(
             Stdout::getContents(),
             new StdoutContains($string),
+            $message
+        );
+    }
+
+    public static function assertStdoutNotContains(string $string, string $message = '') : void
+    {
+        self::assertThat(
+            Stdout::getContents(),
+            new StdoutNotContains($string),
             $message
         );
     }
