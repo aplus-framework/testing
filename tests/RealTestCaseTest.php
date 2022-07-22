@@ -10,6 +10,9 @@
 namespace Tests\Testing;
 
 use Exception;
+use Framework\CLI\Streams\Stderr;
+use Framework\CLI\Streams\Stdout;
+use Framework\MVC\App;
 use Framework\Testing\TestCase;
 
 /**
@@ -116,6 +119,44 @@ final class RealTestCaseTest extends TestCase
         }
     }
 
+    protected function esc(string $output) : string
+    {
+        return \strtr($output, ["\n" => "\\n\n"]);
+    }
+
+    public function testResponseBodyNotContains() : void
+    {
+        self::assertResponseBodyNotContains('Error 404');
+    }
+
+    public function testResponseBodyNotContainsFail() : void
+    {
+        $this->app->runHttp('http://localhost');
+        try {
+            self::assertResponseBodyNotContains('Error 404');
+        } catch (Exception $exception) {
+            $body = $this->esc(App::response()->getBody());
+            self::assertSame(
+                "Failed asserting that Response Body '{$body}' does not contain 'Error 404'.",
+                $exception->getMessage()
+            );
+        }
+    }
+
+    public function testResponseBodyNotContainsFailMessage() : void
+    {
+        $this->app->runHttp('http://localhost');
+        try {
+            self::assertResponseBodyContains('Error 404', 'ABC');
+        } catch (Exception $exception) {
+            $body = $this->esc(App::response()->getBody());
+            self::assertSame(
+                "ABC\nFailed asserting that Response Body '{$body}' does not contain 'Error 404'.",
+                $exception->getMessage()
+            );
+        }
+    }
+
     public function testResponseContainsHeader() : void
     {
         $this->app->runHttp('http://localhost');
@@ -141,6 +182,37 @@ final class RealTestCaseTest extends TestCase
         } catch (Exception $exception) {
             self::assertSame(
                 "ABC\nFailed asserting that Response contains header 'content-type'.",
+                $exception->getMessage()
+            );
+        }
+    }
+
+    public function testResponseNotContainsHeader() : void
+    {
+        self::assertResponseNotContainsHeader('content-type');
+    }
+
+    public function testResponseNotContainsHeaderFail() : void
+    {
+        $this->app->runHttp('http://localhost');
+        try {
+            self::assertResponseNotContainsHeader('content-type');
+        } catch (Exception $exception) {
+            self::assertSame(
+                "Failed asserting that Response does not contain header 'content-type'.",
+                $exception->getMessage()
+            );
+        }
+    }
+
+    public function testResponseNotContainsHeaderFailMessage() : void
+    {
+        $this->app->runHttp('http://localhost');
+        try {
+            self::assertResponseNotContainsHeader('content-type', 'ABC');
+        } catch (Exception $exception) {
+            self::assertSame(
+                "ABC\nFailed asserting that Response does not contain header 'content-type'.",
                 $exception->getMessage()
             );
         }
@@ -201,6 +273,40 @@ final class RealTestCaseTest extends TestCase
         }
     }
 
+    public function testStdoutNotContains() : void
+    {
+        $this->app->runCli('help about');
+        self::assertStdoutNotContains('foo');
+    }
+
+    public function testStdoutNotContainsFail() : void
+    {
+        $this->app->runCli('index');
+        try {
+            self::assertStdoutNotContains('index');
+        } catch (Exception $exception) {
+            $stdout = $this->esc(Stdout::getContents());
+            self::assertSame(
+                "Failed asserting that STDOUT '{$stdout}' does not contain 'index'.",
+                $exception->getMessage()
+            );
+        }
+    }
+
+    public function testStdoutNotContainsFailMessage() : void
+    {
+        $this->app->runCli('index');
+        try {
+            self::assertStdoutNotContains('index', 'ABC');
+        } catch (Exception $exception) {
+            $stdout = $this->esc(Stdout::getContents());
+            self::assertSame(
+                "ABC\nFailed asserting that STDOUT '{$stdout}' does not contain 'index'.",
+                $exception->getMessage()
+            );
+        }
+    }
+
     public function testStderrContains() : void
     {
         $this->app->runCli('index');
@@ -228,6 +334,43 @@ final class RealTestCaseTest extends TestCase
         } catch (Exception $exception) {
             self::assertSame(
                 "ABC\nFailed asserting that STDERR '' contains 'foo'.",
+                $exception->getMessage()
+            );
+        }
+    }
+
+    public function testStderrNotContains() : void
+    {
+        $this->app->runCli('index');
+        \fwrite(\STDERR, 'Foobar');
+        self::assertStderrNotContains('foo');
+    }
+
+    public function testStderrNotContainsFail() : void
+    {
+        $this->app->runCli('index');
+        \fwrite(\STDERR, 'foo');
+        try {
+            self::assertStderrNotContains('foo');
+        } catch (Exception $exception) {
+            $stderr = $this->esc(Stderr::getContents());
+            self::assertSame(
+                "Failed asserting that STDERR '{$stderr}' does not contain 'foo'.",
+                $exception->getMessage()
+            );
+        }
+    }
+
+    public function testStderrNotContainsFailMessage() : void
+    {
+        $this->app->runCli('index');
+        \fwrite(\STDERR, 'foo');
+        try {
+            self::assertStderrContains('foo', 'ABC');
+        } catch (Exception $exception) {
+            $stderr = $this->esc(Stderr::getContents());
+            self::assertSame(
+                "ABC\nFailed asserting that STDERR '{$stderr}' does not contain 'foo'.",
                 $exception->getMessage()
             );
         }
