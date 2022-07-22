@@ -6,7 +6,11 @@
         <exclude name="StaticAccess"/>
     </rule>
     <!-- codesize -->
-    <rule ref="rulesets/codesize.xml"/>
+    <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
+        <properties>
+            <property name="ignorepattern" value="(^(assert))i"/>
+        </properties>
+    </rule>
     <!-- controversial -->
     <rule ref="rulesets/controversial.xml">
         <exclude name="Superglobals"/>
