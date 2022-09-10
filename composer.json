@@ -41,7 +41,7 @@
         "ext-xdebug": "*",
         "aplus/coding-standard": "^1.12",
         "ergebnis/composer-normalize": "^2.25",
-        "phpmd/phpmd": "^2.12",
+        "phpmd/phpmd": "^2.13",
         "phpstan/phpstan": "^1.5"
     },
     "minimum-stability": "dev",
