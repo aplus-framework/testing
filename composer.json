@@ -34,7 +34,7 @@
     ],
     "require": {
         "php": ">=8.1",
-        "aplus/mvc": "dev-master",
+        "aplus/mvc": "^3.0",
         "phpunit/phpunit": "^9.5"
     },
     "require-dev": {
