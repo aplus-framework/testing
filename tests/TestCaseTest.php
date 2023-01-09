@@ -51,9 +51,9 @@ final class TestCaseTest extends PHPUnitTestCase
         self::assertSame('/users?page=10', $_SERVER['REQUEST_URI']);
         self::assertSame('Foo-Bar/1.1', $_SERVER['HTTP_USER_AGENT']);
         self::assertSame('foo=1; bar=2', $_SERVER['HTTP_COOKIE']);
-        self::assertSame('1', $_COOKIE['foo']);
+        self::assertSame('1', $_COOKIE['foo']); // @phpstan-ignore-line
         self::assertSame('2', $_COOKIE['bar']);
-        self::assertSame('10', $_GET['page']);
+        self::assertSame('10', $_GET['page']); // @phpstan-ignore-line
         self::assertSame([], $_POST);
     }
 
