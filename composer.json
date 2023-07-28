@@ -21,9 +21,9 @@
     "homepage": "https://aplus-framework.com/packages/testing",
     "support": {
         "email": "support@aplus-framework.com",
-        "issues": "https://gitlab.com/aplus-framework/libraries/testing/issues",
+        "issues": "https://github.com/aplus-framework/testing/issues",
         "forum": "https://aplus-framework.com/forum",
-        "source": "https://gitlab.com/aplus-framework/libraries/testing",
+        "source": "https://github.com/aplus-framework/testing",
         "docs": "https://docs.aplus-framework.com/guides/libraries/testing/"
     },
     "funding": [
