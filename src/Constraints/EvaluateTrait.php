@@ -27,7 +27,7 @@ trait EvaluateTrait
         if ($returnResult) {
             return $success;
         }
-        if ( ! $success) {
+        if (!$success) {
             $comparison = null;
             if (\is_string($this->value) && \is_string($other)) {
                 $comparison = new ComparisonFailure(
@@ -45,8 +45,8 @@ trait EvaluateTrait
     private function evaluateSuccess(mixed $other) : bool
     {
         if (\is_float($this->value) && \is_float($other) &&
-            ! \is_infinite($this->value) && ! \is_infinite($other) &&
-            ! \is_nan($this->value) && ! \is_nan($other)) {
+            !\is_infinite($this->value) && !\is_infinite($other) &&
+            !\is_nan($this->value) && !\is_nan($other)) {
             return \abs($this->value - $other) < \PHP_FLOAT_EPSILON;
         }
         return $this->value === $other;

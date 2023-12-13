@@ -33,7 +33,7 @@ final class StderrContains extends Constraint
             'Failed asserting that STDERR %s',
             $this->failureDescription($other)
         );
-        if ( ! empty($description)) {
+        if (!empty($description)) {
             $failureDescription = $description . "\n" . $failureDescription;
         }
         throw new ExpectationFailedException(

@@ -95,7 +95,7 @@ class AppTesting
         string $body = ''
     ) : void {
         App::setIsCli(false);
-        if ( ! $url instanceof URL) {
+        if (!$url instanceof URL) {
             $url = new URL($url);
         }
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';

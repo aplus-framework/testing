@@ -33,7 +33,7 @@ final class ResponseNotContainsHeader extends Constraint
             'Failed asserting that Response %s',
             $this->failureDescription($other)
         );
-        if ( ! empty($description)) {
+        if (!empty($description)) {
             $failureDescription = $description . "\n" . $failureDescription;
         }
         throw new ExpectationFailedException(

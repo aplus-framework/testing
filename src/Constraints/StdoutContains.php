@@ -33,7 +33,7 @@ final class StdoutContains extends Constraint
             'Failed asserting that STDOUT %s',
             $this->failureDescription($other)
         );
-        if ( ! empty($description)) {
+        if (!empty($description)) {
             $failureDescription = $description . "\n" . $failureDescription;
         }
         throw new ExpectationFailedException(

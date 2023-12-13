@@ -33,7 +33,7 @@ final class StderrNotContains extends Constraint
             'Failed asserting that STDERR %s',
             $this->failureDescription($other)
         );
-        if ( ! empty($description)) {
+        if (!empty($description)) {
             $failureDescription = $description . "\n" . $failureDescription;
         }
         throw new ExpectationFailedException(
@@ -52,6 +52,6 @@ final class StderrNotContains extends Constraint
 
     protected function matches(mixed $other) : bool
     {
-        return ! \str_contains($other, $this->string);
+        return !\str_contains($other, $this->string);
     }
 }

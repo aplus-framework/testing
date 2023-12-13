@@ -33,7 +33,7 @@ final class ResponseBodyContains extends Constraint
             'Failed asserting that Response Body %s',
             $this->failureDescription($other)
         );
-        if ( ! empty($description)) {
+        if (!empty($description)) {
             $failureDescription = $description . "\n" . $failureDescription;
         }
         throw new ExpectationFailedException(

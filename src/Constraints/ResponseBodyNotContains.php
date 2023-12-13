@@ -33,7 +33,7 @@ final class ResponseBodyNotContains extends Constraint
             'Failed asserting that Response Body %s',
             $this->failureDescription($other)
         );
-        if ( ! empty($description)) {
+        if (!empty($description)) {
             $failureDescription = $description . "\n" . $failureDescription;
         }
         throw new ExpectationFailedException(
@@ -52,6 +52,6 @@ final class ResponseBodyNotContains extends Constraint
 
     protected function matches(mixed $other) : bool
     {
-        return ! \str_contains($other, $this->string);
+        return !\str_contains($other, $this->string);
     }
 }
