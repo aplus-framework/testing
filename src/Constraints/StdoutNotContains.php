@@ -27,7 +27,7 @@ final class StdoutNotContains extends Constraint
         $this->string = $string;
     }
 
-    protected function fail($other, $description, ComparisonFailure $comparisonFailure = null) : void
+    protected function fail(mixed $other, string $description, ComparisonFailure $comparisonFailure = null) : never
     {
         $failureDescription = \sprintf(
             'Failed asserting that STDOUT %s',
