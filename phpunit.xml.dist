@@ -13,6 +13,7 @@
     </coverage>
     <testsuite name="Tests">
         <directory suffix="Test.php">tests</directory>
+        <exclude>src</exclude>
     </testsuite>
     <logging/>
     <source>
