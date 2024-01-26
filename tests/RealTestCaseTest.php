@@ -34,6 +34,20 @@ final class RealTestCaseTest extends TestCase
         self::assertMatchedRouteName('not-found');
     }
 
+    public function testExceptionBeforeRouteAction() : void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid URL: invalid-url');
+        $this->app->runHttp('invalid-url');
+    }
+
+    public function testExceptionInRouteAction() : void
+    {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Error in route action');
+        $this->app->runHttp('http://localhost/error');
+    }
+
     public function testResponseStatus() : void
     {
         $this->app->runHttp('http://localhost');

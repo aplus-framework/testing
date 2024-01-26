@@ -53,11 +53,12 @@ class AppTesting
      */
     protected function suppressOutputBuffer(Closure $closure) : void
     {
-        \ob_start(static function () {
-            return '';
-        });
-        $closure($this->app);
-        \ob_end_clean();
+        \ob_start(static fn () => '');
+        try {
+            $closure($this->app);
+        } finally {
+            \ob_end_clean();
+        }
     }
 
     /**
