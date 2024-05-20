@@ -15,7 +15,7 @@ return [
         'callback' => static function (Router $router) : void {
             $router->serve('http://localhost', static function (RouteCollection $routes) : void {
                 $routes->get('/error', static function () : void {
-                    throw new \LogicException('Error in route action');
+                    throw new LogicException('Error in route action');
                 });
             });
         },
