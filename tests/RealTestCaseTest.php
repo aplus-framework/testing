@@ -14,10 +14,9 @@ use Framework\CLI\Streams\Stderr;
 use Framework\CLI\Streams\Stdout;
 use Framework\MVC\App;
 use Framework\Testing\TestCase;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
-/**
- * @runTestsInSeparateProcesses
- */
+#[RunTestsInSeparateProcesses]
 final class RealTestCaseTest extends TestCase
 {
     protected array | string | null $configs = __DIR__ . '/config';

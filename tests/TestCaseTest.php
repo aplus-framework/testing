@@ -10,13 +10,10 @@
 namespace Tests\Testing;
 
 use Framework\CLI\Streams\Stdout;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
-/**
- * Class TestCaseTest.
- *
- * @runTestsInSeparateProcesses
- */
+#[RunTestsInSeparateProcesses]
 final class TestCaseTest extends PHPUnitTestCase
 {
     protected TestCaseMock $testCase;
