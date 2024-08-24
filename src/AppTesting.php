@@ -85,7 +85,7 @@ class AppTesting
     /**
      * Simulate an HTTP Request for tests.
      *
-     * @param string|URL $url
+     * @param URL|string $url
      * @param string $method
      * @param array<string,string> $headers
      * @param string $body
