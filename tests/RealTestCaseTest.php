@@ -56,10 +56,10 @@ final class RealTestCaseTest extends TestCase
     public function testResponseStatusFail() : void
     {
         try {
-            self::assertResponseStatus('404 Not Found');
+            self::assertResponseStatus('404 Not Found', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that '404 Not Found' is equals the Response Status '200 OK'.",
+                "Message\nFailed asserting that '404 Not Found' is equals the Response Status '200 OK'.",
                 $exception->getMessage()
             );
         }
@@ -74,10 +74,10 @@ final class RealTestCaseTest extends TestCase
     public function testResponseStatusCodeFail() : void
     {
         try {
-            self::assertResponseStatusCode(404);
+            self::assertResponseStatusCode(404, 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                'Failed asserting that 404 is equals the Response Status Code 200.',
+                "Message\nFailed asserting that 404 is equals the Response Status Code 200.",
                 $exception->getMessage()
             );
         }
@@ -92,10 +92,10 @@ final class RealTestCaseTest extends TestCase
     public function testResponseStatusReasonFail() : void
     {
         try {
-            self::assertResponseStatusReason('Not Found');
+            self::assertResponseStatusReason('Not Found', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that 'Not Found' is equals the Response Status Reason 'OK'.",
+                "Message\nFailed asserting that 'Not Found' is equals the Response Status Reason 'OK'.",
                 $exception->getMessage()
             );
         }
@@ -111,10 +111,10 @@ final class RealTestCaseTest extends TestCase
     public function testResponseBodyContainsFail() : void
     {
         try {
-            self::assertResponseBodyContains('Error 404');
+            self::assertResponseBodyContains('Error 404', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that Response Body '' contains 'Error 404'.",
+                "Message\nFailed asserting that Response Body '' contains 'Error 404'.",
                 $exception->getMessage()
             );
         }
@@ -123,10 +123,10 @@ final class RealTestCaseTest extends TestCase
     public function testResponseBodyContainsFailMessage() : void
     {
         try {
-            self::assertResponseBodyContains('Error 404', 'ABC');
+            self::assertResponseBodyContains('Error 404', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "ABC\nFailed asserting that Response Body '' contains 'Error 404'.",
+                "Message\nFailed asserting that Response Body '' contains 'Error 404'.",
                 $exception->getMessage()
             );
         }
@@ -146,11 +146,11 @@ final class RealTestCaseTest extends TestCase
     {
         $this->app->runHttp('http://localhost');
         try {
-            self::assertResponseBodyNotContains('Error 404');
+            self::assertResponseBodyNotContains('Error 404', 'Message');
         } catch (Exception $exception) {
             $body = $this->esc(App::response()->getBody());
             self::assertSame(
-                "Failed asserting that Response Body '{$body}' does not contain 'Error 404'.",
+                "Message\nFailed asserting that Response Body '{$body}' does not contain 'Error 404'.",
                 $exception->getMessage()
             );
         }
@@ -160,11 +160,11 @@ final class RealTestCaseTest extends TestCase
     {
         $this->app->runHttp('http://localhost');
         try {
-            self::assertResponseBodyContains('Error 404', 'ABC');
+            self::assertResponseBodyContains('Error 404', 'Message');
         } catch (Exception $exception) {
             $body = $this->esc(App::response()->getBody());
             self::assertSame(
-                "ABC\nFailed asserting that Response Body '{$body}' does not contain 'Error 404'.",
+                "Message\nFailed asserting that Response Body '{$body}' does not contain 'Error 404'.",
                 $exception->getMessage()
             );
         }
@@ -179,10 +179,10 @@ final class RealTestCaseTest extends TestCase
     public function testResponseContainsHeaderFail() : void
     {
         try {
-            self::assertResponseContainsHeader('content-type');
+            self::assertResponseContainsHeader('content-type', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that Response contains header 'content-type'.",
+                "Message\nFailed asserting that Response contains header 'content-type'.",
                 $exception->getMessage()
             );
         }
@@ -191,10 +191,10 @@ final class RealTestCaseTest extends TestCase
     public function testResponseContainsHeaderFailMessage() : void
     {
         try {
-            self::assertResponseContainsHeader('content-type', 'ABC');
+            self::assertResponseContainsHeader('content-type', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "ABC\nFailed asserting that Response contains header 'content-type'.",
+                "Message\nFailed asserting that Response contains header 'content-type'.",
                 $exception->getMessage()
             );
         }
@@ -209,10 +209,10 @@ final class RealTestCaseTest extends TestCase
     {
         $this->app->runHttp('http://localhost');
         try {
-            self::assertResponseNotContainsHeader('content-type');
+            self::assertResponseNotContainsHeader('content-type', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that Response does not contain header 'content-type'.",
+                "Message\nFailed asserting that Response does not contain header 'content-type'.",
                 $exception->getMessage()
             );
         }
@@ -222,10 +222,10 @@ final class RealTestCaseTest extends TestCase
     {
         $this->app->runHttp('http://localhost');
         try {
-            self::assertResponseNotContainsHeader('content-type', 'ABC');
+            self::assertResponseNotContainsHeader('content-type', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "ABC\nFailed asserting that Response does not contain header 'content-type'.",
+                "Message\nFailed asserting that Response does not contain header 'content-type'.",
                 $exception->getMessage()
             );
         }
@@ -240,10 +240,14 @@ final class RealTestCaseTest extends TestCase
     public function testResponseHeaderFail() : void
     {
         try {
-            self::assertResponseHeader('content-type', 'text/html; charset=UTF-8');
+            self::assertResponseHeader(
+                'content-type',
+                'text/html; charset=UTF-8',
+                'Message'
+            );
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that 'text/html; charset=UTF-8' is equals the value of the Response Header 'content-type'.",
+                "Message\nFailed asserting that 'text/html; charset=UTF-8' is equals the value of the Response Header 'content-type'.",
                 $exception->getMessage()
             );
         }
@@ -265,10 +269,10 @@ final class RealTestCaseTest extends TestCase
     public function testStdoutContainsFail() : void
     {
         try {
-            self::assertStdoutContains('foo');
+            self::assertStdoutContains('foo', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that STDOUT '' contains 'foo'.",
+                "Message\nFailed asserting that STDOUT '' contains 'foo'.",
                 $exception->getMessage()
             );
         }
@@ -277,10 +281,10 @@ final class RealTestCaseTest extends TestCase
     public function testStdoutContainsFailMessage() : void
     {
         try {
-            self::assertStdoutContains('foo', 'ABC');
+            self::assertStdoutContains('foo', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "ABC\nFailed asserting that STDOUT '' contains 'foo'.",
+                "Message\nFailed asserting that STDOUT '' contains 'foo'.",
                 $exception->getMessage()
             );
         }
@@ -296,11 +300,11 @@ final class RealTestCaseTest extends TestCase
     {
         $this->app->runCli('index');
         try {
-            self::assertStdoutNotContains('index');
+            self::assertStdoutNotContains('index', 'Message');
         } catch (Exception $exception) {
             $stdout = $this->esc(Stdout::getContents());
             self::assertSame(
-                "Failed asserting that STDOUT '{$stdout}' does not contain 'index'.",
+                "Message\nFailed asserting that STDOUT '{$stdout}' does not contain 'index'.",
                 $exception->getMessage()
             );
         }
@@ -310,11 +314,11 @@ final class RealTestCaseTest extends TestCase
     {
         $this->app->runCli('index');
         try {
-            self::assertStdoutNotContains('index', 'ABC');
+            self::assertStdoutNotContains('index', 'Message');
         } catch (Exception $exception) {
             $stdout = $this->esc(Stdout::getContents());
             self::assertSame(
-                "ABC\nFailed asserting that STDOUT '{$stdout}' does not contain 'index'.",
+                "Message\nFailed asserting that STDOUT '{$stdout}' does not contain 'index'.",
                 $exception->getMessage()
             );
         }
@@ -331,10 +335,10 @@ final class RealTestCaseTest extends TestCase
     public function testStderrContainsFail() : void
     {
         try {
-            self::assertStderrContains('foo');
+            self::assertStderrContains('foo', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that STDERR '' contains 'foo'.",
+                "Message\nFailed asserting that STDERR '' contains 'foo'.",
                 $exception->getMessage()
             );
         }
@@ -343,10 +347,10 @@ final class RealTestCaseTest extends TestCase
     public function testStderrContainsFailMessage() : void
     {
         try {
-            self::assertStderrContains('foo', 'ABC');
+            self::assertStderrContains('foo', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "ABC\nFailed asserting that STDERR '' contains 'foo'.",
+                "Message\nFailed asserting that STDERR '' contains 'foo'.",
                 $exception->getMessage()
             );
         }
@@ -364,11 +368,11 @@ final class RealTestCaseTest extends TestCase
         $this->app->runCli('index');
         \fwrite(\STDERR, 'foo');
         try {
-            self::assertStderrNotContains('foo');
+            self::assertStderrNotContains('foo', 'Message');
         } catch (Exception $exception) {
             $stderr = $this->esc(Stderr::getContents());
             self::assertSame(
-                "Failed asserting that STDERR '{$stderr}' does not contain 'foo'.",
+                "Message\nFailed asserting that STDERR '{$stderr}' does not contain 'foo'.",
                 $exception->getMessage()
             );
         }
@@ -379,11 +383,11 @@ final class RealTestCaseTest extends TestCase
         $this->app->runCli('index');
         \fwrite(\STDERR, 'foo');
         try {
-            self::assertStderrContains('foo', 'ABC');
+            self::assertStderrContains('foo', 'Message');
         } catch (Exception $exception) {
             $stderr = $this->esc(Stderr::getContents());
             self::assertSame(
-                "ABC\nFailed asserting that STDERR '{$stderr}' does not contain 'foo'.",
+                "Message\nFailed asserting that STDERR '{$stderr}' does not contain 'foo'.",
                 $exception->getMessage()
             );
         }
@@ -399,10 +403,10 @@ final class RealTestCaseTest extends TestCase
     {
         $this->app->runHttp('http://localhost');
         try {
-            self::assertMatchedRouteName('foo');
+            self::assertMatchedRouteName('foo', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that 'foo' is equals the Matched Route Name 'not-found'.",
+                "Message\nFailed asserting that 'foo' is equals the Matched Route Name 'not-found'.",
                 $exception->getMessage()
             );
         }
@@ -411,10 +415,10 @@ final class RealTestCaseTest extends TestCase
     public function testMatchedRouteNameFail() : void
     {
         try {
-            self::assertMatchedRouteName('foo');
+            self::assertMatchedRouteName('foo', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "Failed asserting that 'foo' is equals the Matched Route Name (null).",
+                "Message\nFailed asserting that 'foo' is equals the Matched Route Name (null).",
                 $exception->getMessage()
             );
         }
@@ -423,10 +427,10 @@ final class RealTestCaseTest extends TestCase
     public function testMatchedRouteNameFailMessage() : void
     {
         try {
-            self::assertMatchedRouteName('foo', 'ABC');
+            self::assertMatchedRouteName('foo', 'Message');
         } catch (Exception $exception) {
             self::assertSame(
-                "ABC\nFailed asserting that 'foo' is equals the Matched Route Name (null).",
+                "Message\nFailed asserting that 'foo' is equals the Matched Route Name (null).",
                 $exception->getMessage()
             );
         }
