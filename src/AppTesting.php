@@ -41,7 +41,7 @@ class AppTesting
         };
         // We need to restore the error handler to avoid conflict with PHPUnit.
         // See: https://github.com/sebastianbergmann/phpunit/issues/5403
-        \restore_error_handler();
+        //\restore_error_handler();
     }
 
     /**
