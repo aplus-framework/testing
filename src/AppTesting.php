@@ -32,7 +32,8 @@ class AppTesting
      */
     public function __construct(Config $config)
     {
-        $this->app = new class($config) extends App {
+        $this->app = new class($config) extends App
+        {
             public function runCliWithExec(string $command) : void
             {
                 $this->prepareToRun();
