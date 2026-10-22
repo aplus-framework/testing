@@ -42,7 +42,7 @@
         "aplus/coding-standard": "^4.0",
         "ergebnis/composer-normalize": "^2.25",
         "phpmd/phpmd": "^2.13",
-        "phpstan/phpstan": "^1.9.13"
+        "phpstan/phpstan": "^2.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

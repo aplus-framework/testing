@@ -17,9 +17,9 @@ class TestCaseMock extends TestCase
     protected array | string | null $configs = __DIR__ . '/config';
     public AppTesting $app;
 
-    public function __construct(mixed ...$arguments)
+    public function __construct(string $name) // @phpstan-ignore-line
     {
-        parent::__construct(...$arguments);
+        parent::__construct($name);
         $this->prepareDefaults();
     }
 }
