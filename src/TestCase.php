@@ -47,7 +47,7 @@ abstract class TestCase extends PHPUnitTestCase
         $this->prepareDefaults();
     }
 
-    protected function prepareDefaults() : void
+    public function prepareDefaults() : void
     {
         $this->app = new AppTesting($this->config ?? new Config($this->configs));
     }

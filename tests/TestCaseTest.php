@@ -21,6 +21,7 @@ final class TestCaseTest extends PHPUnitTestCase
     protected function setUp() : void
     {
         $this->testCase = new TestCaseMock('foo');
+        $this->testCase->prepareDefaults();
     }
 
     public function testRunHttp() : void
