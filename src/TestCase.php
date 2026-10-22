@@ -7,25 +7,25 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Framework\Testing;
+namespace Aplus\Testing;
 
-use Framework\CLI\Streams\Stderr;
-use Framework\CLI\Streams\Stdout;
-use Framework\Config\Config;
-use Framework\MVC\App;
-use Framework\Testing\Constraints\MatchedRouteName;
-use Framework\Testing\Constraints\ResponseBodyContains;
-use Framework\Testing\Constraints\ResponseBodyNotContains;
-use Framework\Testing\Constraints\ResponseContainsHeader;
-use Framework\Testing\Constraints\ResponseHeader;
-use Framework\Testing\Constraints\ResponseNotContainsHeader;
-use Framework\Testing\Constraints\ResponseStatus;
-use Framework\Testing\Constraints\ResponseStatusCode;
-use Framework\Testing\Constraints\ResponseStatusReason;
-use Framework\Testing\Constraints\StderrContains;
-use Framework\Testing\Constraints\StderrNotContains;
-use Framework\Testing\Constraints\StdoutContains;
-use Framework\Testing\Constraints\StdoutNotContains;
+use Aplus\Cli\Streams\Stderr;
+use Aplus\Cli\Streams\Stdout;
+use Aplus\Config\Config;
+use Aplus\Mvc\App;
+use Aplus\Testing\Constraints\MatchedRouteName;
+use Aplus\Testing\Constraints\ResponseBodyContains;
+use Aplus\Testing\Constraints\ResponseBodyNotContains;
+use Aplus\Testing\Constraints\ResponseContainsHeader;
+use Aplus\Testing\Constraints\ResponseHeader;
+use Aplus\Testing\Constraints\ResponseNotContainsHeader;
+use Aplus\Testing\Constraints\ResponseStatus;
+use Aplus\Testing\Constraints\ResponseStatusCode;
+use Aplus\Testing\Constraints\ResponseStatusReason;
+use Aplus\Testing\Constraints\StderrContains;
+use Aplus\Testing\Constraints\StderrNotContains;
+use Aplus\Testing\Constraints\StdoutContains;
+use Aplus\Testing\Constraints\StdoutNotContains;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 /**

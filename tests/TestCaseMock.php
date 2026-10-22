@@ -9,8 +9,8 @@
  */
 namespace Tests\Testing;
 
-use Framework\Testing\AppTesting;
-use Framework\Testing\TestCase;
+use Aplus\Testing\AppTesting;
+use Aplus\Testing\TestCase;
 
 class TestCaseMock extends TestCase
 {

@@ -9,7 +9,7 @@
  */
 namespace Tests\Testing;
 
-use Framework\CLI\Streams\Stdout;
+use Aplus\Cli\Streams\Stdout;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 

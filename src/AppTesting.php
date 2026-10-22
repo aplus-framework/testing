@@ -7,14 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Framework\Testing;
+namespace Aplus\Testing;
 
+use Aplus\Cli\Streams\Stderr;
+use Aplus\Cli\Streams\Stdout;
+use Aplus\Config\Config;
+use Aplus\Http\Url;
+use Aplus\Mvc\App;
 use Closure;
-use Framework\CLI\Streams\Stderr;
-use Framework\CLI\Streams\Stdout;
-use Framework\Config\Config;
-use Framework\HTTP\URL;
-use Framework\MVC\App;
 
 /**
  * Class AppTesting.
@@ -86,7 +86,7 @@ class AppTesting
     /**
      * Simulate an HTTP Request for tests.
      *
-     * @param URL|string $url
+     * @param Url|string $url
      * @param string $method
      * @param array<string,string> $headers
      * @param string $body
@@ -94,15 +94,16 @@ class AppTesting
      * @return void
      */
     public function runHttp(
-        URL | string $url,
+        Url | string $url,
         string $method = 'GET',
         array $headers = [],
         string $body = ''
     ) : void {
         App::setIsCli(false);
-        if (!$url instanceof URL) {
-            $url = new URL($url);
+        if (!$url instanceof Url) {
+            $url = new Url($url);
         }
+        $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = \strtoupper($method);
         $_SERVER['REQUEST_SCHEME'] = $url->getScheme();

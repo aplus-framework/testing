@@ -9,11 +9,11 @@
  */
 namespace Tests\Testing;
 
+use Aplus\Cli\Streams\Stderr;
+use Aplus\Cli\Streams\Stdout;
+use Aplus\Mvc\App;
+use Aplus\Testing\TestCase;
 use Exception;
-use Framework\CLI\Streams\Stderr;
-use Framework\CLI\Streams\Stdout;
-use Framework\MVC\App;
-use Framework\Testing\TestCase;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 #[RunTestsInSeparateProcesses]

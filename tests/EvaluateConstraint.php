@@ -9,7 +9,7 @@
  */
 namespace Tests\Testing;
 
-use Framework\Testing\Constraints\EvaluateTrait;
+use Aplus\Testing\Constraints\EvaluateTrait;
 use PHPUnit\Framework\Constraint\Constraint;
 
 /**
