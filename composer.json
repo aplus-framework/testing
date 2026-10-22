@@ -48,7 +48,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Framework\\Testing\\": "src/"
+            "Aplus\\Testing\\": "src/"
         }
     },
     "autoload-dev": {
