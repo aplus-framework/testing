@@ -19,6 +19,7 @@ registerArgumentsSet(
     \Aplus\Http\Method::PATCH,
     \Aplus\Http\Method::POST,
     \Aplus\Http\Method::PUT,
+    \Aplus\Http\Method::QUERY,
     \Aplus\Http\Method::TRACE,
     'CONNECT',
     'DELETE',
@@ -28,6 +29,7 @@ registerArgumentsSet(
     'PATCH',
     'POST',
     'PUT',
+    'QUERY',
     'TRACE',
 );
 registerArgumentsSet(
